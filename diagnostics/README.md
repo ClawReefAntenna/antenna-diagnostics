@@ -1,51 +1,70 @@
 # Antenna diagnostics — v1.6.9
 
-Try screening rules against sample messages or your own examples, without
-sending messages or changing your active settings. Use the diagnostics kit
+Try malicious content screening rules against sample messages or your own
+examples, without sending messages or changing your active settings. Use the diagnostics kit
 matching your Antenna release; it is a separate download from native messaging.
 [Download v1.6.9](https://github.com/ClawReefAntenna/antenna-diagnostics/releases/download/v1.6.9/antenna-diagnostics-1.6.9.tgz) and verify its
 [SHA-256 checksum](https://github.com/ClawReefAntenna/antenna-diagnostics/releases/download/v1.6.9/SHA256SUMS) before extracting it into its own directory.
 Run from this extracted kit with `node diagnostics/cli.mjs HOST COMMAND ...`.
 
-## MCS evaluation and custom-body diagnostics
+## Try a message or a collection
 
-With Dumb or Both, `evaluate` and `test` accept `--ruleset /absolute/candidate.json` for candidate
-rule evaluation without changing the active file. These commands share the
-production scanner and leave your messages, inbox and policy unchanged.
-
-See the [corpus format and authoring guide](../plugin/CORPORA.md). `evaluate --corpus /path/tests.json`
-selects a custom labelled corpus for that invocation; omitting it uses the separate
-bundled file. `--preview` validates without scanning. Default human output contains
-attacks caught, false positives, incomplete scans and model requests. `--verbose`
-adds missed attack IDs/types/content, false-positive IDs/content/rules or model
-findings, and incomplete IDs/reasons. Repetitions get separate summaries.
-Requested JSON report files retain detailed diagnostics; custom corpora have dynamic denominators.
+The kit uses the same Malicious Content Scanning (MCS) helpers as the matching
+messaging release. Start with a simple Dumb test, then try the bundled collection
+or preview it without scanning:
 
 ```text
-node diagnostics/cli.mjs /path/openclaw.json evaluate --engine dumb --preview --json
-node diagnostics/cli.mjs /path/openclaw.json evaluate --engine smart --repeat 2 --output /new/private-report
-node diagnostics/cli.mjs /path/openclaw.json evaluate --engine both --json
 node diagnostics/cli.mjs /path/openclaw.json test --text "meeting agenda" --json
-node diagnostics/cli.mjs /path/openclaw.json test --file one.txt --file two.txt --engine smart --expect benign
-node diagnostics/cli.mjs /path/openclaw.json test --stdin --engine dumb --output /new/private-report
 node diagnostics/cli.mjs /path/openclaw.json test --file one.txt --engine dumb
+node diagnostics/cli.mjs /path/openclaw.json test --stdin --engine dumb --output /new/private-report
+node diagnostics/cli.mjs /path/openclaw.json evaluate --engine dumb
+node diagnostics/cli.mjs /path/openclaw.json evaluate --engine dumb --preview --json
 ```
 
-Use the standalone `diagnostics/cli.mjs` from this kit with an explicit host config. `evaluate` defaults to Smart; `test` defaults to Dumb.
-Smart is model-only, Both is Dumb-first with short-circuit, and `model` is a
-model-only diagnostic alias. Off is not a diagnostic engine.
+You can ask your agent: “Test these example messages with Dumb and show me any
+missed attacks or harmless messages it flags.”
+
+With Dumb or Both, `evaluate` and `test` accept `--ruleset /absolute/candidate.json`
+for candidate rule evaluation without changing the active file. These commands
+share the production scanner and leave your messages, inbox and policy unchanged.
+See the [corpus format and authoring guide](../plugin/CORPORA.md).
+`evaluate --corpus /path/tests.json` selects a custom labelled corpus for that
+invocation; omitting it uses the bundled file. `--preview` validates without scanning.
+
+### Compare Smart and Both
+
+Use the standalone `diagnostics/cli.mjs` from this kit with an explicit host config.
+`evaluate` defaults to Smart; `test` defaults to Dumb. Choose `--engine dumb` for
+offline evaluation. Smart is model-only, Both is Dumb-first with short-circuit,
+and `model` is a model-only diagnostic alias. Off is not a diagnostic engine.
 
 Smart/model sends selected message bodies to your configured model; Both does
 so after a Dumb pass. Preview makes no model calls and never consumes stdin.
 Evaluation leaves your selected model and live policy unchanged. To compare
 models, select and run each explicitly; reports include model identities and
-fingerprints.
+fingerprints. Saved reports can contain private text; see the detail controls below.
+
+```text
+node diagnostics/cli.mjs /path/openclaw.json evaluate --engine smart --repeat 2 --output /new/private-report
+node diagnostics/cli.mjs /path/openclaw.json evaluate --engine both --json
+node diagnostics/cli.mjs /path/openclaw.json test --file one.txt --file two.txt --engine smart --expect benign
+```
+
+## Read the results
+
+Default human output contains attacks caught, false positives, incomplete scans
+and model requests. `--verbose` adds missed attack IDs/types/content, false-positive
+IDs/content/rules or model findings, and incomplete IDs/reasons. Repetitions get
+separate summaries. Requested JSON report files retain detailed diagnostics.
+Scores use the examples in your chosen collection.
 
 The bundled corpus contains 40 malicious, 40 benign and four ambiguous examples.
-Use your own examples alongside this sample when comparing screening choices.
-Expected labels never enter model requests. Ambiguous cases do not enter binary
-scores; incomplete scans remain in their labelled denominators. Repetitions show
-variation without increasing the number of unique examples.
+Use your own examples alongside this sample when comparing malicious content
+screening choices. Expected labels never enter model requests. Ambiguous cases
+do not enter binary scores; incomplete scans remain in their labelled denominators.
+Repetitions show variation without increasing the number of unique examples.
+
+## Inputs and private reports
 
 Inputs are literal UTF-8 text, explicit regular files, or explicit stdin; forms
 cannot be mixed except repeated files. BOMs and terminal newlines are preserved.

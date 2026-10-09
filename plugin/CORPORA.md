@@ -1,7 +1,7 @@
 # Evaluation corpora
 
-A corpus is a JSON collection of labelled messages for testing your screening
-choices. The [standalone diagnostics kit](https://github.com/ClawReefAntenna/antenna-diagnostics/releases/download/v1.6.9/antenna-diagnostics-1.6.9.tgz)
+A corpus is a JSON collection of labelled messages for testing your malicious
+content screening choices. The [standalone diagnostics kit](https://github.com/ClawReefAntenna/antenna-diagnostics/releases/download/v1.6.9/antenna-diagnostics-1.6.9.tgz)
 includes one at `plugin/corpus/controls.json`. Extract the kit into its own directory;
 run the commands below from that directory.
 
@@ -73,13 +73,13 @@ node diagnostics/cli.mjs /path/openclaw.json evaluate --engine both --corpus /pa
 ```
 
 `--preview` validates the entire file and shows the plan without scanning or
-calling a model. Valid syntax says nothing about detection effectiveness.
+calling a model. Run evaluation to see how the scanner handles its examples.
 Omit `--corpus` to return to the bundled default. `--suite bundled` remains a
 compatibility spelling; it cannot be combined with `--corpus`.
 Use this standalone CLI for evaluation; the native plugin and companion do not bundle it.
 `evaluate` without an engine defaults to Smart; choose `--engine dumb` for offline
-work. No additional confirmation, automatic activation, delivery, inbox changes
-or release of held messages occurs. Smart/Both can send bodies to the selected model.
+work. Evaluation leaves live settings, messages and holds unchanged. Smart/Both
+can send bodies to the selected model.
 
 ## Results
 

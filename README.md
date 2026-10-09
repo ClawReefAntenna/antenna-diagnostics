@@ -12,6 +12,5 @@ model. Preview makes no model calls.
 
 Messaging and active Malicious Content Scanning stay in the
 [OpenClaw Plugin](https://github.com/ClawReefAntenna/antenna-openclaw).
-This repository owns only the optional evaluation app.
 
 [Build and dependency provenance](packaging/README.md) · [MIT license](LICENSE)
