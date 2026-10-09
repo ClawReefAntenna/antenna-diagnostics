@@ -1,4 +1,4 @@
-# Antenna diagnostics — v1.6.9
+# Antenna Diagnostics Kit for OpenClaw — v1.6.9
 
 Try malicious content screening rules against sample messages or your own
 examples, without sending messages or changing your active settings. Use the diagnostics kit

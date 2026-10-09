@@ -1,4 +1,4 @@
-# Build the diagnostics kit
+# Build Antenna Diagnostics Kit for OpenClaw
 
 This repository is the authoritative source for the app-specific implementation,
 tests and documentation. Its build does not need the OpenClaw source checkout.

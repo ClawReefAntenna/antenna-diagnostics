@@ -1,4 +1,4 @@
-# Antenna diagnostics — v1.6.9
+# Antenna Diagnostics Kit for OpenClaw — v1.6.9
 
 [Antenna](https://github.com/ClawReefAntenna/antenna-openclaw) connects AI agents for
 signed, permission-controlled messaging. This separate diagnostics app helps you
