@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "candidate": "1.6.9",
+  "base_revision": "c30c7d4edbcd42362c899fb69bc51c99d3961b2c",
+  "compatibility": {
+    "runtime": "1.6.9 schema 2; compatible with 1.6.8 native state and antenna-plugin-v2 peers",
+    "transport": "antenna-plugin-v2",
+    "limits": "antenna-limits-2",
+    "release_version": "1.6.9"
+  },
+  "artifacts": {
+    "diagnostics": [
+      "LICENSE",
+      "diagnostics/README.md",
+      "diagnostics/cli.mjs",
+      "plugin/CORPORA.md",
+      "plugin/capacity.mjs",
+      "plugin/corpus/controls.json",
+      "plugin/dumb-worker.mjs",
+      "plugin/evaluation.mjs",
+      "plugin/inbox.mjs",
+      "plugin/limits.mjs",
+      "plugin/operator-auth.mjs",
+      "plugin/policy.mjs",
+      "plugin/rules/default.json",
+      "plugin/ruleset.mjs",
+      "plugin/scanners.mjs",
+      "plugin/smart.mjs",
+      "plugin/tests/corpus.mjs",
+      "plugin/tests/diagnostics.mjs",
+      "plugin/tests/report-bounds.mjs",
+      "plugin/tests/resources.mjs",
+      "README.md",
+      "plugin/tests/missing-corpus.mjs",
+      "SOURCE.json",
+      "packaging/README.md"
+    ]
+  }
+}
