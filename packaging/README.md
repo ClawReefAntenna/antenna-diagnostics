@@ -25,3 +25,15 @@ matching version label alone.
 The diagnostic corpus is locally authored synthetic material with source/license
 metadata. Its split labels are not held-out evidence or independent quality
 certification. Reported model names do not pin immutable provider weights.
+
+## Operator archive and regression checks
+
+The operator archive contains 18 files: the CLI, scanner dependencies and rules,
+sample corpus, operator and corpus guides, license and provenance. Five regression
+tests and this build guide stay in the repository and full-source archive.
+
+The verifier checks the pristine extracted archive and its dependency closure,
+then copies only the five test files into that temporary extraction. All five
+suites run against shipped implementation bytes, which are checked again afterward.
+`SOURCE.json` separates shipped shared dependencies from `developmentSharedFiles`;
+the builder validates both sets of pins.

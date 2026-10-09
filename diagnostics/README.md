@@ -2,7 +2,9 @@
 
 Try malicious content screening rules against sample messages or your own
 examples, without sending messages or changing your active settings. Use the diagnostics kit
-matching your Antenna release; it is a separate download from native messaging.
+matching your [Antenna for OpenClaw](https://github.com/ClawReefAntenna/antenna-openclaw)
+release. Antenna handles everyday agent messaging; this separate app helps you
+evaluate its scanners.
 [Download v1.6.9](https://github.com/ClawReefAntenna/antenna-diagnostics/releases/download/v1.6.9/antenna-diagnostics-1.6.9.tgz) and verify its
 [SHA-256 checksum](https://github.com/ClawReefAntenna/antenna-diagnostics/releases/download/v1.6.9/SHA256SUMS) before extracting it into its own directory.
 Run from this extracted kit with `node diagnostics/cli.mjs HOST COMMAND ...`.
@@ -33,7 +35,6 @@ invocation; omitting it uses the bundled file. `--preview` validates without sca
 
 ### Compare Smart and Both
 
-Use the standalone `diagnostics/cli.mjs` from this kit with an explicit host config.
 `evaluate` defaults to Smart; `test` defaults to Dumb. Choose `--engine dumb` for
 offline evaluation. Smart is model-only, Both is Dumb-first with short-circuit,
 and `model` is a model-only diagnostic alias. Off is not a diagnostic engine.
@@ -71,8 +72,7 @@ cannot be mixed except repeated files. BOMs and terminal newlines are preserved.
 Empty, invalid UTF-8, binary/control, oversized, symlink, device, directory and FIFO
 inputs are rejected rather than cropped. Failed files remain visible in batch
 reports. Stdin has a 30-second read deadline. Use files/stdin to avoid placing
-private text in process arguments or shell history. No URL fetching or globbing
-is performed by the scanner. Shell expansion is the caller's responsibility.
+private text in process arguments or shell history. The scanner reads local inputs only; your shell may expand unquoted wildcards.
 
 `--expect benign|malicious` supplies an operator **batch-wide** label, never an
 inferred correct answer. Unlabelled custom tests have no correctness score.
@@ -85,7 +85,7 @@ Human output escapes untrusted values; do not interpret report content as comman
 or HTML. Structured JSON reports include corpus hash, implementation-file hashes, scanner versions,
 model-selection fingerprint, timings, request counts, order and per-case body digests.
 
-Exit codes: evaluation report generated = 0 (not quality acceptance); custom pass
+Exit codes: evaluation report generated = 0; custom pass
 = 0, would hold = 2, incomplete/configuration failure = 3, invalid invocation/input
 = 64. Mixed custom batches retain every error and return 64 if any input failed.
 
@@ -93,8 +93,7 @@ Exit codes: evaluation report generated = 0 (not quality acceptance); custom pas
 ## Report bounds
 
 Console output is capped at 64 KiB; larger results produce a compact summary.
-Use `--output NEW_DIRECTORY` for full JSON/plain-text reports (0700 directory,
-0600 files). Detailed reports have a 32 MiB budget per representation; reduce
+Use `--output NEW_DIRECTORY` to save JSON/plain-text reports. Detailed reports have a 32 MiB budget per representation; reduce
 cases, repetitions or verbose/details if it is exceeded. No partial report is
 presented as complete.
 

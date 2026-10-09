@@ -50,7 +50,9 @@
     {
       "path": "plugin/smart.mjs",
       "sha256": "9cd39b5445b998f3aebb762b50c9f0bd77def6ec0ff41f5432d3b14097fc03cf"
-    },
+    }
+  ],
+  "developmentSharedFiles": [
     {
       "path": "plugin/tests/resources.mjs",
       "sha256": "98e0ee974940352f0b7688b8a889a1850a0f90303040b87a686bfbde09c341ad"

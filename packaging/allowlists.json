@@ -26,14 +26,8 @@
       "plugin/ruleset.mjs",
       "plugin/scanners.mjs",
       "plugin/smart.mjs",
-      "plugin/tests/corpus.mjs",
-      "plugin/tests/diagnostics.mjs",
-      "plugin/tests/report-bounds.mjs",
-      "plugin/tests/resources.mjs",
       "README.md",
-      "plugin/tests/missing-corpus.mjs",
-      "SOURCE.json",
-      "packaging/README.md"
+      "SOURCE.json"
     ]
   }
 }

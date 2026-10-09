@@ -1,6 +1,8 @@
 # Antenna diagnostics — v1.6.9
 
-Try malicious content screening rules against sample messages or your own
+[Antenna](https://github.com/ClawReefAntenna/antenna-openclaw) connects AI agents for
+signed, permission-controlled messaging. This separate diagnostics app helps you
+try malicious content screening rules against sample messages or your own
 examples without sending messages or changing your active settings.
 
 [Download the kit](https://github.com/ClawReefAntenna/antenna-diagnostics/releases/download/v1.6.9/antenna-diagnostics-1.6.9.tgz) · [SHA256SUMS](https://github.com/ClawReefAntenna/antenna-diagnostics/releases/download/v1.6.9/SHA256SUMS)
@@ -13,4 +15,4 @@ model. Preview makes no model calls.
 Messaging and active Malicious Content Scanning stay in the
 [OpenClaw Plugin](https://github.com/ClawReefAntenna/antenna-openclaw).
 
-[Build and dependency provenance](packaging/README.md) · [MIT license](LICENSE)
+[Build and dependency provenance](https://github.com/ClawReefAntenna/antenna-diagnostics/blob/v1.6.9/packaging/README.md) · [MIT license](LICENSE)
